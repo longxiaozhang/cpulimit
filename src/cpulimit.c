@@ -248,6 +248,10 @@ void limit_process(pid_t pid, double limit, int include_children)
 			workingrate = limit;
 			twork.tv_nsec = TIME_SLOT * limit * 1000;
 		}
+		else if (pcpu == 0){
+			workingrate = limit;
+			twork.tv_nsec = TIME_SLOT * 1000;
+		}
 		else {
 			//adjust workingrate
 			workingrate = MIN(workingrate / pcpu * limit, 1);
